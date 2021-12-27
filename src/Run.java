@@ -25,25 +25,41 @@ public class Run {
             mapa.put(r);
             indDados = indDados + 3;
         }while(indDados < 15);
+        int menu = 0;
+        System.out.println("=== MENU ===");
+        System.out.println("(1) Consultar ID.\n(2) Consultar informações do usuário.\nEntrada: ");
+        menu = teclado.nextInt();
+        switch (menu){
+            case 1:
+                System.out.println("\n");
+                do {
+                    System.out.println("===== CONSULTAR INFORMAÇÕES DO USUÁRIO =====");
+                    System.out.print("Digite uma chave: ");
+                    id = Integer.parseInt(teclado.next());
+                    r = mapa.get(id);
+                    if (id != -1) {
+                        if (r != null) {
+                            System.out.println("===== INFORMAÇÕES DO USUÁRIO =====");
+                            System.out.println("ID = " + r.getKey());
+                            System.out.println("Nome = " + r.getNome());
+                            System.out.println("E-mail = " + r.getEmail()+"\n\n");
+                        } else {
+                            System.out.println("Não existe informações para esse ID.");
+                        }
+                    }
+                }while (id != -1);
+                break;
+            case 2:
 
-        System.out.println("\n");
+                System.out.println("\n");
+                System.out.println("===== CONSULTAR ID =====");
+                String ArqConsulta = "C:\\Users\\Regiana\\IdeaProjects\\ATV4_TabelaHash\\src\\consulta.txt";
+                String conteudoConsulta = read(ArqConsulta);
+                String dadoConsulta = conteudoConsulta.split(";") [1];
+                id = Integer.parseInt(dadoConsulta);
 
-        do {
-            System.out.println("===== CONSULTAR INFORMAÇÕES DO USUÁRIO =====");
-            System.out.print("Digite uma chave: ");
-            id = Integer.parseInt(teclado.next());
-            r = mapa.get(id);
-            if (id != -1) {
-                if (r != null) {
-                    System.out.println("===== INFORMAÇÕES DO USUÁRIO =====");
-                    System.out.println("ID = " + r.getKey());
-                    System.out.println("Nome = " + r.getNome());
-                    System.out.println("E-mail = " + r.getEmail()+"\n\n");
-                } else {
-                    System.out.println("Não existe!");
-                }
-            }
-        }while (id != -1);
+        }
+
     }
     public static String read(String caminho){
         String conteudo = "";
